@@ -1,0 +1,9 @@
+Article used to deploy on aws isntance: https://medium.com/@rksmith369/how-to-deploy-mern-stack-app-on-aws-ec2-with-ssl-nginx-the-right-way-e76c1a8cd6c6
+After setting up the server,
+1. Insatll node and npm
+2. Install ssl and nginx server
+3. Install pm2
+4. Donwload project files from git
+5. To install node and react files, in the project folder do "npm install" and then in client folder in project do "npm insatll" agin.First one is for node files and second for react files.
+6. Then make production build. In client folder "npm run build"
+7. Then in project folder start node server by using "pm2 start index.js"
