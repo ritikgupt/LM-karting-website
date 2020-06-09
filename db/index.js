@@ -32,4 +32,16 @@ teamdb.add = (req) => {
     });
 };
 
+teamdb.show = (req) => {
+    console.log('hello');
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM team', 
+        (err,results) =>{
+            if(err)
+            return reject(err);
+            console.log(results)
+            return resolve(results);
+        });
+    });
+};
 module.exports = teamdb;
