@@ -90,7 +90,6 @@ render(){
         <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-reg" role="tab" aria-controls="nav-reg" aria-selected="true" style={{color: 'red'}}>Register</a>
-    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-log" role="tab" aria-controls="nav-log" aria-selected="false" style={{color: 'red'}}>Login</a>
   </div>
         </nav>
 <div class="tab-content" id="nav-tabContent">
@@ -164,25 +163,7 @@ render(){
 </form>
 </div>
 
-  <div class="tab-pane fade container" id="nav-log" role="tabpanel" aria-labelledby="nav-profile-tab">
-  	<form class="m-4" onSubmit={this.onSubmitLog}>
-  <div class="form-group row">
-    <label  class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" name="emiallog" required value={this.state.emaillog}
-                  onChange={this.onChange}/>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="passwordlog" class="col-sm-2 col-form-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" name="passwordlog" required value={this.state.passwordlog}
-                  onChange={this.onChange}/>
-    </div>
-  </div>
-    <button type="submit" class="btn btn-danger">Log In</button>
-</form>
-  </div>
+ 
 </div>
 
         </div>
