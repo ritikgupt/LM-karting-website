@@ -5,21 +5,16 @@ const router = express.Router()
 const bodyParser = require('body-parser');
 const passport=require('passport');
 const registerRoute = require ('./routes/auth');
+const adminRoute = require('./routes/admin')
 const path = require('path');
 //Body Parser middleware
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
-// //DB Config
-// const db = require('./config/keys').mongoURI;
 
-// //Connect to MongoDB
-// mongoose
-// 	.connect(db)
-// 	.then( () => console.log('MongoDB Connected'))
-//     .catch(err => console.log(err)); 
 
-	app.use('/',registerRoute);
+    app.use('/',registerRoute);
+    app.use(adminRoute)
 
 	app.use(express.static('client/build'));
     app.get('*', (req,res) =>{
