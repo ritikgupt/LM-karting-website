@@ -22,8 +22,8 @@ teamdb.add = (req) => {
     console.log('hello');
     console.log(req);
     return new Promise((resolve, reject) => {
-        pool.query('insert into team (teamname,captainname,college,city,state,category,phone,email,password,date) values (?,?,?,?,?,?,?,?,?,CURDATE())', 
-        [req.teamname, req.captainname, req.college,req.city,req.state, req.category, req.phone,req.email,req.password], (err,results) =>{
+        pool.query('insert into team (teamname,captainname,college,city,state,category,phone,email,date) values (?,?,?,?,?,?,?,?,CURDATE())', 
+        [req.teamname, req.captainname, req.college,req.city,req.state, req.category, req.phone,req.email], (err,results) =>{
             if(err)
             return reject(err);
             return resolve(results);

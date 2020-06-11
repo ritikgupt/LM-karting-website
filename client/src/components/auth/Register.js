@@ -13,10 +13,7 @@ class Register extends Component{
             category:'',
             phone: '',
             email:'',
-            password:'',
-            password2:'',
             emaillog:'',
-            passwordlog:''
 		};
 		this.onChange = this.onChange.bind(this);
         this.onSubmitReg =this.onSubmitReg.bind(this);
@@ -27,15 +24,7 @@ class Register extends Component{
     }
     onSubmitReg(e){
             e.preventDefault();
-            if(this.state.password !== this.state.password2)
-                {
-                    this.setState({msg:'Passwords do not match'});
-                }
-            else if(this.state.password.length<8 ||this.state.password.length>15)
-            {
-              this.setState({msg:'Passwords should be between 8 and 15 characters'});
-            }
-            else if(this.state.phone.length!=10){
+            if(this.state.phone.length!=10){
                 this.setState({msg:'Phone number should be of 10 digits'});
             }
             else if(this.state.category ==''){
@@ -51,7 +40,6 @@ class Register extends Component{
                 category:this.state.category,
                 phone:this.state.phone,
                 email:this.state.email,
-                password:this.state.password,
     };
         this.setState({
             teamname:'',
@@ -62,8 +50,6 @@ class Register extends Component{
             category:'',
             phone:'',
             email:'',
-            password:'',
-            password2:''
         });
         axios.post('/register', newTeam)
         .then(response => this.setState({msg:response.data.msg}))
@@ -144,18 +130,6 @@ render(){
     <div class="form-group col-md-6">
       <label for="email">E-mail</label>
       <input type="email" class="form-control" name="email" required value={this.state.email}
-                  onChange={this.onChange}/>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="password">Password (between 8 and 15 characters)</label>
-      <input type="password" class="form-control" name="password" required value={this.state.password}
-                  onChange={this.onChange}/>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="password2">Confirm Password</label>
-      <input type="password" class="form-control" name="password2" required value={this.state.password2}
                   onChange={this.onChange}/>
     </div>
   </div>

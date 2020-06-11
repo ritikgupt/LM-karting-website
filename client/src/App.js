@@ -10,7 +10,6 @@ import Register from './components/auth/Register';
 import SimpleSlider from './components/SimpleSlider'
 import Contact from './components/Contact.js';
 import Download from './components/Download';
-import Admin from './components/admin';
 
 function App() {
   return (
@@ -25,7 +24,6 @@ function App() {
           <Route exact path="/reglogin" component={Register} />
           <Route exact path="/download" component={Download} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/admin" component={Admin}/>
   			</div>
       <Footer />
     </div>
