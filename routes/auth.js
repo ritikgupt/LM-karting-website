@@ -10,8 +10,7 @@ router.post('/register', async (req,res) =>{
         let results = await db.check(req.body.email);
         if(results.length ===0){
             console.log('he');
-            let res= await db.add(req.body);
-            res.send({msg:'Registered'})
+            let a= await db.add(req.body);
         }
         else{return res.send({msg:'Email Already Exists'});}
     }catch(e){
