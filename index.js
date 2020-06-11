@@ -9,6 +9,7 @@ const path = require('path');
 //Body Parser middleware
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.set('view engine', 'ejs');
 // //DB Config
 // const db = require('./config/keys').mongoURI;
 
@@ -25,4 +26,6 @@ app.use(bodyParser.json());
         res.sendFile(path.resolve(__dirname, 'client','build','index.html'))
     });
 
-app.listen(process.env.PORT || 5000)
+app.listen(process.env.PORT || 5000,()=>{
+    console.log('server has started');
+})
