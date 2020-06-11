@@ -22,8 +22,8 @@ teamdb.add = (req) => {
     console.log('hello');
     console.log(req);
     return new Promise((resolve, reject) => {
-        pool.query('insert into team (teamname,captainname,college,city,state,category,phone,email,date) values (?,?,?,?,?,?,?,?,CURDATE())', 
-        [req.teamname, req.captainname, req.college,req.city,req.state, req.category, req.phone,req.email], (err,results) =>{
+        pool.query('insert into team (teamname,captainname,college,city,state,category,phone,email,access,date) values (?,?,?,?,?,?,?,?,?,CURDATE())', 
+        [req.teamname, req.captainname, req.college,req.city,req.state, req.category, req.phone,req.email,'0'], (err,results) =>{
             if(err)
             return reject(err);
             return resolve(results);
@@ -33,6 +33,17 @@ teamdb.add = (req) => {
 teamdb.show = (req) => {
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM team', 
+        (err,results) =>{
+            if(err)
+            return reject(err);
+            return resolve(results);
+        });
+    });
+};
+teamdb.change = (req) => {
+    
+    return new Promise((resolve, reject) => {
+        pool.query('Update team set access="1" ', 
         (err,results) =>{
             if(err)
             return reject(err);

@@ -12,6 +12,6 @@ create table team(
     category varchar(20),
     phone varchar(10),
     email varchar(50),
-    password varchar(15),
+    access varchar(10),
     date date
 );
