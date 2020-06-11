@@ -9,8 +9,12 @@
                     <form action="/clear" method="POST">
                     <button class="ui red basic button">Clear Expenditure</button>
                     </form>
-                    <button onclick="setDocumentMetadata()" class="ui green basic button">Expenditure Report</button>
-                  <a class="ui red basic button"href="/employee">Back</a>
+                    <button onclick="setDocumentMetadata()" class="ui green basic button">Registered Students</button>
+                    <button onclick="setNewDocumentMetadata()" class="ui green basic button">Newly Registered Students</button>
+                    <br><br>
+                    <form action="/update" method="POST">
+                      <button class="ui purple basic button">Update Download</button>
+                      </form>
             </div>
     </div>
     
@@ -52,6 +56,47 @@
         page.drawText('E-mail: <%=a[i].email%>',{ x:10, y: s-60, size: 10 })
         page.drawText('Category: <%=a[i].category%>',{ x:10, y: s-70, size: 10 })
       <%}%>
+      // Set all available metadata fields on the PDFDocument. Note that these fields
+      // are visible in the "Document Properties" section of most PDF readers.
+      pdfDoc.setTitle('Expense report of <%=a.name%>')
+      pdfDoc.setAuthor('Humpty Dumpty')
+      pdfDoc.setSubject('📘 An Epic Tale of Woe 📖')
+      pdfDoc.setKeywords(['eggs', 'wall', 'fall', 'king', 'horses', 'men'])
+      pdfDoc.setProducer('PDF App 9000 🤖')
+      pdfDoc.setCreator('pdf-lib (https://github.com/Hopding/pdf-lib)')
+      pdfDoc.setCreationDate(new Date('2018-06-24T01:58:37.228Z'))
+      pdfDoc.setModificationDate(new Date('2019-12-21T07:00:11.000Z'))
+      // Serialize the PDFDocument to bytes (a Uint8Array)
+      const pdfBytes = await pdfDoc.save()
+			// Trigger the browser to download the PDF document
+      download(pdfBytes, "pdf-lib_creation_example.pdf", "application/pdf");
+    } 
+
+
+    async function setNewDocumentMetadata() {
+      // Create a new PDFDocument
+      const pdfDoc = await PDFDocument.create()
+      // Embed the Times Roman font
+      const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
+      // Add a page and draw some text on it
+      const page = pdfDoc.addPage([500, 100000])
+      // const page1 = pdfDoc.addPage([500, 600])
+      page.setFont(timesRomanFont)
+      page.drawText('Registered Students', { x: 30, y: 99950, size: 30 })
+     
+      {s=99950}
+      <%for(var i=0;i<a.length;i++){%>
+        <%if(a[i].access==="0"){%>
+      {s=s-100}
+        page.drawText('Team Name: <%=(a[i].teamname)%>',{ x:10, y: s, size: 10 })
+        page.drawText('Captain Name: <%=a[i].captainname%>',{ x:10, y: s-10, size: 10 })
+        page.drawText('College: <%=a[i].college%>',{ x:10, y: s-20, size: 10 })
+        page.drawText('State: <%=a[i].city%>',{ x:10, y: s-30, size: 10 })
+        page.drawText('City: <%=a[i].city%>',{ x:10, y: s-40, size: 10 })
+        page.drawText('Phone: <%=a[i].phone%>',{ x:10, y: s-50, size: 10 })
+        page.drawText('E-mail: <%=a[i].email%>',{ x:10, y: s-60, size: 10 })
+        page.drawText('Category: <%=a[i].category%>',{ x:10, y: s-70, size: 10 })
+      <%}}%>
       // Set all available metadata fields on the PDFDocument. Note that these fields
       // are visible in the "Document Properties" section of most PDF readers.
       pdfDoc.setTitle('Expense report of <%=a.name%>')
