@@ -1,8 +1,6 @@
 const express= require('express');
 const router= express.Router();
-const bcrypt=require('bcryptjs');
-const jwt=require('jsonwebtoken');
-const passport = require('passport'); 
+const SqlToJson = require('sql-to-json');
 const Team = require('../models/Team');
 const db = require('../db');
 
@@ -21,15 +19,28 @@ router.post('/register', async (req,res) =>{
     }
 });
 
-router.post('/admin',async(req,res)=>{
+router.get('/admin',async(req,res)=>{
     try{
         let a= await db.show(req)
-        res.json(a)
+        a=(JSON.stringify(a))
+        a=JSON.parse(a)
+        res.render('admin',{a:a})
 
     }catch(e)
     {
         res.json({'message':'error'})
-        console.log('error')
+        console.log(e)
+    }
+})
+
+router.post('/clear',async(req,res)=>{
+    try{
+        let a= await db.delete(req)
+        res.json({message:"deleted"})
+    }catch(e)
+    {
+        res.json({'message':'error'})
+        console.log(e)
     }
 })
 module.exports =router;

@@ -8,7 +8,6 @@ const pool = mysql.createPool({
 });
 //sql: Uv7j5#r1     lmkarting-root
 let teamdb={};
-
 teamdb.check = (email) => {
     return new Promise((resolve, reject) => {
         pool.query('select * from team where email=?',[email], (err,results) =>{
@@ -31,17 +30,25 @@ teamdb.add = (req) => {
         });
     });
 };
-
 teamdb.show = (req) => {
-    console.log('hello');
     return new Promise((resolve, reject) => {
         pool.query('SELECT * FROM team', 
         (err,results) =>{
             if(err)
             return reject(err);
-            console.log(results)
             return resolve(results);
         });
     });
 };
+teamdb.delete = (req) => {
+    return new Promise((resolve, reject) => {
+        pool.query('DELETE FROM team', 
+        (err,results) =>{
+            if(err)
+            return reject(err);
+            return resolve(results);
+        });
+    });
+};
+
 module.exports = teamdb;

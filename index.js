@@ -9,6 +9,7 @@ const path = require('path');
 //Body Parser middleware
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.set('view engine', 'ejs');
 // //DB Config
 // const db = require('./config/keys').mongoURI;
 
